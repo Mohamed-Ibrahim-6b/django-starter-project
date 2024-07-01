@@ -1,0 +1,21 @@
+<ul id="nav-item-list" class="navbar-nav me-auto mb-2 mb-md-0">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'pages:about' %}">About</a>
+  </li>
+  {% if user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link"
+         href=""
+         hx-post="{% url 'hx-logout' %}"
+         hx-target="#nav-item-list"
+         hx-swap="outerhtml">Log Out</a>
+    </li>
+  {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}">Log In</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+    </li>
+  {% endif %}
+</ul>

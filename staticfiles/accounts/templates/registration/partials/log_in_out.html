@@ -1,0 +1,11 @@
+<span id="login_out">
+  {% if user.is_authenticated %}
+    <a href=""
+       hx-post="{% url 'hx-logout' %}"
+       hx-target="#login_out"
+       hx-swap="outerhtml">Log Out</a>
+  {% else %}
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'signup' %}">Sign Up</a>
+  {% endif %}
+</span>

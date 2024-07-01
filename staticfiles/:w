@@ -1,0 +1,14 @@
+from django.contrib.auth import logout
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+
+def hx_logout(request):
+    if request.method == "POST":
+        logout(request)
+        return render(
+            request=request,
+            template_name="registration/partials/log_in_out.html",
+            context={},
+        )
