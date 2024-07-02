@@ -82,14 +82,6 @@ DATABASES = {
         "DATABASE_URL",
         default="postgres://postgres@postgres_db/postgres",
     ),
-    # "default": {
-    #     "ENGINE": "django.db.backends.postgresql",
-    #     "NAME": "postgres",
-    #     "USER": "postgres",
-    #     "PASSWORD": "postgres",
-    #     "HOST": "postgres",
-    #     "PORT": 5432,
-    # }
 }
 
 
@@ -158,3 +150,4 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 # related
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "admin@mydomain.com"

@@ -10,7 +10,7 @@ services:
       - postgres_db
     environment:
       - "DJANGO_SECRET_KEY=django-insecure-=_esevrydx-0fcm#s)8)k&z@pw8^m(f@(5mv(8$$=nj8zt)ey^#"
-      - "DJANGO_DEBUG=False"
+      - "DJANGO_DEBUG=True"
   postgres_db:
     image: postgres:16-bullseye
     volumes:
