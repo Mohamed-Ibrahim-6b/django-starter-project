@@ -7,8 +7,11 @@ services:
     ports:
       - 8000:8000
     depends_on:
-      - postgres
-  postgres:
+      - postgres_db
+    environment:
+      - "DJANGO_SECRET_KEY=django-insecure-=_esevrydx-0fcm#s)8)k&z@pw8^m(f@(5mv(8$$=nj8zt)ey^#"
+      - "DJANGO_DEBUG=False"
+  postgres_db:
     image: postgres:16-bullseye
     volumes:
       - postgres_data:/var/lib/postgresql/data/
