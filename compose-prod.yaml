@@ -3,11 +3,11 @@ services:
     extends:
       file: compose-base.yaml
       service: web
-    env_file: ./env/dev/web.env
+    env_file: ./env/prod/web.env
   postgres_db:
     extends:
       file: compose-base.yaml
       service: postgres_db
-    env_file: ./env/dev/postgres_db.env
+    env_file: ./env/prod/postgres_db.env
 volumes:
   postgres_data:

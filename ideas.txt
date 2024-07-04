@@ -1,0 +1,6 @@
+- add https support in development environment runserver_plus
+- add translation support
+- add context_processor to add global variables such as title, company_name, etc
+- add production support. eg white noise for serving static files etc
+- add sending emails (p109:76 django5byexample)
+

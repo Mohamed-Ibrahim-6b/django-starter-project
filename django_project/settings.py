@@ -138,6 +138,9 @@ STATICFILES_DIRS = [BASE_DIR, "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"  # for collectstatic (production)
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -147,6 +150,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 ROOT_URLCONF = "django_project.urls"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "admin@mydomain.com"
 
 # django-crispy-forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -165,9 +171,9 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-# related
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-DEFAULT_FROM_EMAIL = "admin@mydomain.com"
+ACCOUNT_EMAIL_NOTIFICATIONS = True  # send security info -eg password change
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # 'optional' 'none'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"  # default 'http'. other 'https'
 
 # django-debug-toolbar
 INCLUDE_DEBUG_TOOLBAR = DEBUG and True
