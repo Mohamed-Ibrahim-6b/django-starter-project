@@ -1,13 +1,35 @@
 services:
   web:
     extends:
-      file: compose-base.yaml
+      file: compose-prod.yaml
       service: web
-    env_file: ./env/dev/web.env
-  postgres_db:
+    # env_file: ./env/dev.env
+    env_file: 
+      - ./env/prod.env
+      - ./env/dev.env # overrides prod.env and adds more variables
+  #Uncomment command and ports for https
+    command: bash -c "
+        python manage.py migrate &&
+        python manage.py runserver_plus 0.0.0.0:8001 --cert-file cert.crt 
+        "
+    ports:
+      - 8001:8001
+  db_postgres:
     extends:
-      file: compose-base.yaml
-      service: postgres_db
-    env_file: ./env/dev/postgres_db.env
+      file: compose-prod.yaml
+      service: db_postgres
+    # env_file: ./env/dev.env
+    env_file: 
+      - ./env/prod.env
+      - ./env/dev.env # overrides prod.env and adds more variables
+  cache_redis:
+    extends:
+      file: compose-prod.yaml
+      service: cache_redis
+    # env_file: ./env/dev.env
+    env_file: 
+      - ./env/prod.env
+      - ./env/dev.env # overrides prod.env and adds more variables
 volumes:
   postgres_data:
+  redis_data:

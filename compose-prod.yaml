@@ -1,13 +1,34 @@
 services:
   web:
-    extends:
-      file: compose-base.yaml
-      service: web
-    env_file: ./env/prod/web.env
-  postgres_db:
-    extends:
-      file: compose-base.yaml
-      service: postgres_db
-    env_file: ./env/prod/postgres_db.env
+    build: .
+    command: bash -c "
+        python manage.py migrate &&    
+        python manage.py runserver 0.0.0.0:8000
+        "
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db_postgres
+      - cache_redis
+    env_file: ./env/prod.env
+  db_postgres:
+    image: postgres:16-bullseye
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file: ./env/prod.env
+  cache_redis:
+    image: redis:7.2
+    restart: always
+    ports:
+      - '6379:6379'
+    command: bash -c "
+      redis-server --save 20 1 --loglevel warning --requirepass $$REDIS_PASSWORD
+      "
+    volumes: 
+      - redis_data:/data
+    env_file: ./env/prod.env
 volumes:
   postgres_data:
+  redis_data:

@@ -2,4 +2,8 @@
 __pycache__/
 *.sqlite3
 .DS_Store
-env/prod/*.env
+env/prod.env
+# env/dev.env
+*.crt
+*.key
+staticfiles/[^\.]*
