@@ -1,9 +1,10 @@
 .venv/
 __pycache__/
+__pycache__
 *.sqlite3
 .DS_Store
 env/prod.env
-# env/dev.env
 *.crt
 *.key
+#Exclude files starting with . eg .keep
 staticfiles/[^\.]*
